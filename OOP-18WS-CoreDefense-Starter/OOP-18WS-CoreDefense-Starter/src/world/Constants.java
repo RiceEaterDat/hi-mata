@@ -25,6 +25,7 @@ public class Constants {
 
     //Projectile
     public static final Color PROJECTILE_COLOR = Color.CYAN;
+    public static final double SPAWN_RADIUS = 600;
 
     //Player
     public static final Color PLAYER_COLOR = Color.RED;

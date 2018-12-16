@@ -40,10 +40,9 @@ public class Player {
     public void draw() {
         //default : 0.01
         double increase = (Constants.RANGE_START / range) * 0.2;
-        System.out.println(increase);
         Point start = new Point(range * Math.cos(angle - increase) + Constants.CANVAS_CENTER_X, range * Math.sin(angle - increase) + Constants.CANVAS_CENTER_Y);
         Point end = new Point(range * Math.cos(angle + increase) + Constants.CANVAS_CENTER_X, range * Math.sin(angle + increase) + Constants.CANVAS_CENTER_Y);
-        Line player = new Line(start, end, Constants.PLAYER_COLOR);
+        player = new Line(start, end, Constants.PLAYER_COLOR);
         player.setBorderWeight(Constants.PLAYER_THICKNESS);
         player.draw();
     }
@@ -57,7 +56,11 @@ public class Player {
     }
 
     public boolean collidesWith(Projectile projectile) {
-        return false;
+        if (player == null) {
+            return false;
+        }
+        return player.hitTest(projectile.getX(), projectile.getY());
+        //return false;
     }
 
     ///////////////////////////////////////////////////////////////////////////

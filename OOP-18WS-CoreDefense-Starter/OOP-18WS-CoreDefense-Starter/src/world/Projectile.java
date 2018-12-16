@@ -1,6 +1,5 @@
 package world;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import de.ur.mi.geom.Point;
 import de.ur.mi.graphics.Color;
 import de.ur.mi.graphics.Ellipse;
@@ -33,7 +32,7 @@ public class Projectile {
 
         this.startX = startX;
         this.startY = startY;
-        l = new Line(startX, startY, -startX+2*Constants.CANVAS_CENTER_X, -startY+2*Constants.CANVAS_CENTER_Y, Color.RED);
+        l = new Line(startX, startY, Constants.CANVAS_CENTER_X, Constants.CANVAS_CENTER_Y, Color.RED);
         Random r = new Random();
         int radius = r.nextInt(20);
 
@@ -58,13 +57,18 @@ public class Projectile {
     }
 
     public boolean hitTest(double x, double y) {
-        double deltaY = projectile.getX() - Constants.CANVAS_CENTER_X;
-        double deltaX = projectile.getY() - Constants.CANVAS_CENTER_Y;
-
-        return Math.sqrt(Math.pow(deltaX,2) + Math.pow(deltaY, 2)) > getRadius();
+        return projectile.hitTest(x, y);
     }
 
     public double distanceTo(GraphicsObject graphicsObject) {
         return projectile.distanceTo(graphicsObject);
+    }
+
+    public double getX() {
+        return projectile.getX();
+    }
+
+    public double getY() {
+        return projectile.getY();
     }
 }

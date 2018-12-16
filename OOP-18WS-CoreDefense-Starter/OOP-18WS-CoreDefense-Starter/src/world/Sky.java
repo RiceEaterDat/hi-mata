@@ -12,26 +12,17 @@ public class Sky {
 
 
     private Image[] stars = new Image[Constants.MAX_STARS];
-    private Projectile[] projectiles = new Projectile[5];
     private int callCount = 0;
 
     private RandomGenerator random;
 
     public Sky() {
         createStars();
-        Random r = new Random();
-        for (int i = 0; i < 5; i++) {
-            projectiles[i] = new Projectile(20, 900, 200+(2*i*50));
-        }
     }
 
     public void draw() {
         for (int i = 0; i < stars.length; i++) {
             stars[i].draw();
-        }
-        for (int i = 0; i < 5; i++) {
-            projectiles[i].update();
-            projectiles[i].draw();
         }
     }
 
