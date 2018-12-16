@@ -1,10 +1,7 @@
 package game;
 
 import de.ur.mi.geom.Point;
-import world.Constants;
-import world.Player;
-import world.Sky;
-import world.Core;
+import world.*;
 
 public class GameManager {
 
@@ -21,6 +18,7 @@ public class GameManager {
 
     public void update() {
         sky.updateStars();
+        player.update();
     }
 
     public void draw() {
@@ -29,7 +27,12 @@ public class GameManager {
         core.draw();
     }
 
-    public void transmitMovementCommand(/* MovementType type */) {
+    public void transmitMovementCommand(MovementType type) {
+        if(type == MovementType.COUNTER_CLOCKWISE || type == MovementType.CLOCKWISE || type == MovementType.ORBIT_NONE) {
+            player.setOrbitMovementType(type);
+        } else {
+            player.setRangeMovementType(type);
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////

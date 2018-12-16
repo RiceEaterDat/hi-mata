@@ -20,17 +20,17 @@ public class Constants {
     public static final int CANVAS_CENTER_Y = 400;
 
     //Core
-    public static final int CORE_DIAMETER = 50;
+    public static final int CORE_DIAMETER = 80;
     public static final Color CIRCLE_COLOR = Color.YELLOW;
 
     //Projectile
     public static final Color PROJECTILE_COLOR = Color.CYAN;
 
-    //MovementType
-    public static final int RANGE_NONE = 0;
-    public static final int ORBIT_NONE = 1;
-    public static final int CLOCKWISE = 2;
-    public static final int COUNTER_CLOCKWISE = 3;
-    public static final int RANGE_UP = 4;
-    public static final int RANGE_DOWN = 5;
+    //Player
+    public static final Color PLAYER_COLOR = Color.RED;
+    public static final int PLAYER_THICKNESS = 10;
+    public static final double ANGLE_SPEED = 0.1;
+    public static final double RANGE_SPEED = 2;
+    public static final double RANGE_START = 70;
+    public static final double ANGLE_START = 0;
 }

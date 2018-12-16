@@ -58,8 +58,8 @@ public class Projectile {
     }
 
     public boolean hitTest(double x, double y) {
-        double y = projectile.getX() - Constants.CANVAS_CENTER_X;
-        double x = projectile.getY() - Constants.CANVAS_CENTER_Y;
+        double deltaY = projectile.getX() - Constants.CANVAS_CENTER_X;
+        double deltaX = projectile.getY() - Constants.CANVAS_CENTER_Y;
 
         return Math.sqrt(Math.pow(deltaX,2) + Math.pow(deltaY, 2)) > getRadius();
     }

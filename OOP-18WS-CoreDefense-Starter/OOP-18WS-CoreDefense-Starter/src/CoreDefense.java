@@ -5,6 +5,7 @@ import game.GameManager;
 import java.awt.event.KeyEvent;
 
 import world.Constants;
+import world.MovementType;
 
 public class CoreDefense extends GraphicsApp {
 
@@ -31,10 +32,49 @@ public class CoreDefense extends GraphicsApp {
     }
 
     public void keyPressed(KeyEvent e) {
-        // translate key presses into input commands for the game manager
+        //left = 37
+        //up = 38
+        //right = 39
+        //down = 40;
+        switch(e.getKeyCode()) {
+            case 37:
+                gameManager.transmitMovementCommand(MovementType.COUNTER_CLOCKWISE);
+                break;
+            case 38:
+                gameManager.transmitMovementCommand(MovementType.RANGE_UP);
+                break;
+            case 39:
+                gameManager.transmitMovementCommand(MovementType.CLOCKWISE);
+                break;
+            case 40:
+                gameManager.transmitMovementCommand(MovementType.RANGE_DOWN);
+                break;
+            default:
+                break;
+        }
     }
 
     public void keyReleased(KeyEvent e) {
         // translate key presses into input commands for the game manager
+        //left = 37
+        //up = 38
+        //right = 39
+        //down = 40;
+        switch(e.getKeyCode()) {
+            case 37:
+                gameManager.transmitMovementCommand(MovementType.ORBIT_NONE);
+                break;
+            case 38:
+                gameManager.transmitMovementCommand(MovementType.RANGE_NONE);
+                break;
+            case 39:
+                gameManager.transmitMovementCommand(MovementType.ORBIT_NONE);
+                break;
+            case 40:
+                gameManager.transmitMovementCommand(MovementType.RANGE_NONE);
+                break;
+            default:
+                break;
+        }
     }
 }
