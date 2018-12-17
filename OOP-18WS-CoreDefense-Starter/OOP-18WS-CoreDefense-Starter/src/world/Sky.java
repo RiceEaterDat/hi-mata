@@ -5,7 +5,6 @@ import de.ur.mi.graphics.*;
 import de.ur.mi.geom.*;
 import de.ur.mi.util.*;
 
-import java.util.Random;
 
 
 public class Sky {

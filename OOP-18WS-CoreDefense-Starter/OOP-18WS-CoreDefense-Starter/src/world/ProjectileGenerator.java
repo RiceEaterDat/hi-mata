@@ -16,9 +16,6 @@ public class ProjectileGenerator {
     }
 
     private void generateLevel() {
-
-        //TODO: Change 10 to be with respect to level
-        //TODO: change speed to be with respect to level
         for (int i = 0; i < Constants.PROJECTILE_COUNT; i++) {
             double radius = random.nextDouble() * (2*Math.PI);
             double speed = random.nextDouble() * Constants.MAX_SPEED + 1;

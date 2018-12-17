@@ -51,16 +51,11 @@ public class CoreDefense extends GraphicsApp {
                 break;
             case 82:
                 if(Constants.GAME_STATE_STARTED != gameManager.getGameState()) {
-                    //Reset the game
+                    //Resets the game
                     gameManager = new GameManager();
                 }
             default:
                 break;
-        }
-        if(Constants.GAME_STATE_STARTED != 1) {
-            if(e.getKeyCode() == KeyEvent.VK_R) {
-
-            }
         }
     }
 

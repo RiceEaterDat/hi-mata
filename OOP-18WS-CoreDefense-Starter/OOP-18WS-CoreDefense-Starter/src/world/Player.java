@@ -20,13 +20,11 @@ public class Player {
     private MovementType orbitMovement;
     private MovementType orbitRange;
 
-
-    public Player(/* insert parameters here */) {
+    public Player() {
         this.range = RANGE_START;
         this.angle = ANGLE_START;
         this.orbitMovement = MovementType.ORBIT_NONE;
         this.orbitRange = MovementType.RANGE_NONE;
-        this.orbitCenter = new Point(Constants.CANVAS_CENTER_X, Constants.CANVAS_CENTER_Y);
     }
 
     public void update() {
@@ -41,8 +39,11 @@ public class Player {
         double increase = (Constants.RANGE_START / range) * 0.2;
         start = new Point(range * Math.cos(angle - increase) + Constants.CANVAS_CENTER_X, range * Math.sin(angle - increase) + Constants.CANVAS_CENTER_Y);
         end = new Point(range * Math.cos(angle + increase) + Constants.CANVAS_CENTER_X, range * Math.sin(angle + increase) + Constants.CANVAS_CENTER_Y);
+
         player = new Line(start, end, Constants.PLAYER_COLOR);
+
         player.setBorderWeight(Constants.PLAYER_THICKNESS);
+
         player.draw();
     }
 
@@ -58,12 +59,9 @@ public class Player {
         if (player == null) {
             return false;
         }
-        //return player.hitTest(projectile.getX(), projectile.getY());
         return (projectile.hitTest(player) || projectile.hitTest(new Line(start, start, Constants.PLAYER_COLOR)) || projectile.hitTest(new Line(end, end, Constants.PLAYER_COLOR)) );
-        //return projectile.hitTest(player);
     }
 
-    ///////////////////////////////////////////////////////////////////////////
 
     private void updateAngle() {
         switch(this.orbitMovement) {
