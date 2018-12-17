@@ -1,8 +1,12 @@
 package world;
 
+import de.ur.mi.events.Event;
 import de.ur.mi.graphics.Color;
+import de.ur.mi.graphics.GraphicsObject;
 import de.ur.mi.graphics.Label;
 import de.ur.mi.graphics.Rect;
+import de.ur.mi.graphics.events.MouseEvent;
+import de.ur.mi.graphicsapp.GraphicsApp;
 
 public class Informationbar {
     private int points;
@@ -32,16 +36,29 @@ public class Informationbar {
 
 
     public void updatePoints() {
-        point.setText("Points: " + (++this.points));
+        point.setText((++this.points) + " Points");
     }
 
-    public void updateLives() {
+    public int updateLives() {
         this.lives--;
-        live.setText("Lives: " + this.lives);
-
+        live.setText(this.lives + " Lives");
+        return this.lives;
     }
 
     public void setLevel(int level) {
         this.level = level;
     }
+
+    public void renderGameOver() {
+        new Rect(200, 300, 300, 200, Color.LIGHT_GRAY).draw();
+        if (this.lives != 0) {
+            new Label(210, 350, "Congratulations", Color.BLACK, 32).draw();
+        } else {
+            new Label(210, 350, "Game Over", Color.BLACK, 32).draw();
+        }
+        new Label(210, 450, "Final Points: " + this.points, Color.BLACK, 32).draw();
+    }
+
 }
+
+

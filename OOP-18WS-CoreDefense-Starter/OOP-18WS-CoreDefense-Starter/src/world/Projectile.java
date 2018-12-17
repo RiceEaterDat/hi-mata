@@ -1,11 +1,10 @@
 package world;
 
-import de.ur.mi.geom.Point;
-import de.ur.mi.graphics.Color;
 import de.ur.mi.graphics.Ellipse;
 import de.ur.mi.graphics.GraphicsObject;
-import de.ur.mi.graphics.Line;
+import de.ur.mi.graphicsapp.GraphicsApp;
 
+import javax.annotation.processing.SupportedSourceVersion;
 import java.util.Random;
 
 public class Projectile {
@@ -19,10 +18,7 @@ public class Projectile {
     private double deltaY;
 
     private int ticks = 0;
-
-    private boolean debug = true;
-
-    private Line l;
+    private boolean shouldDraw;
 
     public Projectile(double speed, double startX, double startY) {
         this.speed = speed/1e4;
@@ -32,14 +28,20 @@ public class Projectile {
 
         this.startX = startX;
         this.startY = startY;
-        l = new Line(startX, startY, Constants.CANVAS_CENTER_X, Constants.CANVAS_CENTER_Y, Color.RED);
         Random r = new Random();
-        int radius = r.nextInt(20);
+        int radius = Constants.MIN_PROJECTILE_RADIUS + r.nextInt(Constants.MAX_PROJECTILE_RADIUS);
 
         this.projectile = new Ellipse(startX, startY, radius , radius, Constants.PROJECTILE_COLOR);
+
+        this.shouldDraw = true;
     }
 
     public void update() {
+
+        if (!shouldDraw) {
+            return;
+        }
+
         double newX = startX + deltaX * ticks * speed;
         double newY = startY + deltaY * ticks * speed;
         projectile.setPosition(newX, newY);
@@ -48,7 +50,6 @@ public class Projectile {
     }
 
     public void draw() {
-        if (debug) l.draw();
         projectile.draw();
     }
 
@@ -56,19 +57,21 @@ public class Projectile {
         return projectile.getWidth()/2.0;
     }
 
-    public boolean hitTest(double x, double y) {
-        return projectile.hitTest(x, y);
+    public boolean hitTest(GraphicsObject object) {
+        //return (Math.abs(this.projectile.getBottomBorder() - object.getTopBorder()) <= 1)
+//                && object.getBottomBorder() <= this.projectile.getBottomBorder()
+                //&& object.getRightBorder() >= this.projectile.getLeftBorder()
+                //&& object.getLeftBorder() <= this.projectile.getRightBorder();
+        return object.distanceTo(projectile) <= getRadius() * 1.1;
     }
 
     public double distanceTo(GraphicsObject graphicsObject) {
         return projectile.distanceTo(graphicsObject);
     }
 
-    public double getX() {
-        return projectile.getX();
+    public void stopDrawing() {
+        this.shouldDraw = false;
     }
 
-    public double getY() {
-        return projectile.getY();
-    }
+    
 }

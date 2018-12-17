@@ -13,22 +13,20 @@ public class ProjectileGenerator {
         this.queue = new ArrayList<>();
         random = new Random();
         generateLevel();
-
     }
 
     private void generateLevel() {
 
         //TODO: Change 10 to be with respect to level
         //TODO: change speed to be with respect to level
-        for (int i = 0; i < 2; i++) {
-
+        for (int i = 0; i < Constants.PROJECTILE_COUNT; i++) {
             double radius = random.nextDouble() * (2*Math.PI);
+            double speed = random.nextDouble() * Constants.MAX_SPEED + 1;
 
             double x = Constants.SPAWN_RADIUS * Math.cos(radius) + Constants.CANVAS_CENTER_X;
             double y = Constants.SPAWN_RADIUS * Math.sin(radius) + Constants.CANVAS_CENTER_Y;
 
-            queue.add(new Projectile(25, x, y));
-
+            queue.add(new Projectile(speed, x, y));
         }
 
     }

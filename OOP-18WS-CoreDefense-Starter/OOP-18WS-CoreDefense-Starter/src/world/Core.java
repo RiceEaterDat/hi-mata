@@ -14,6 +14,6 @@ public class Core {
     }
 
     public boolean collidesWith(Projectile projectile) {
-        return projectile.distanceTo(core) < 40;
+        return projectile.distanceTo(core) < Constants.HIT_DETECTION;
     }
 }
